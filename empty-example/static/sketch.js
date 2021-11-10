@@ -5,14 +5,10 @@ var sizeLato = 50
 var mosse = 0
 var gameEnded = false
 var livello = 1
-var hIniz, mIniz, sIniz
 
 
 function setup() {
     createCanvas(sizeLato*sizeX, sizeLato*sizeY)
-    hIniz = hour()
-    mIniz = minute()
-    sIniz = second()
     initMatrix()
     createLevel()
     showNewLevelLable()
@@ -26,13 +22,8 @@ function draw() {
         createLevel()
         gameEnded = false
     }
-    
-    showSpeedRunTime()
-    if(gameEnded && livello == 11) {
-    }
-    else {
-        showNewLevelLable()
-    }
+
+    showNewLevelLable()
 }
 
 function drawMatrix() {
@@ -51,9 +42,9 @@ function drawMatrix() {
 function initMatrix() {
     for (let i = 0; i < sizeX; i++) {
         matrice[i] = []
-        for (let j = 0; j < sizeY; j++) {
+        for (let j = 0; j < sizeY; j++)
             matrice[i][j] = true
-        
+
     }
 }
 
@@ -64,7 +55,7 @@ function mod(a, b) {
         return a%b
 }
 
-function touchStarted() {
+function mousePressed() {
     cellaX = Math.floor(mouseX/sizeLato)
     cellaY = Math.floor(mouseY/sizeLato)
     if (cellaX >= sizeX || cellaY >= sizeY) {
@@ -106,18 +97,8 @@ function createLevel() {
     }
 }
 
-function calculateTime() {
-    str(hour()-hIniz) + ":" + str(minute()-mIniz) + ":" + str(second()-sIniz)
-}
-
-function showSpeedRunTime() {
-    textsize(32)
-    fill(0)
-    text(calculateTime(), 50, 80)
-}
-
 function showNewLevelLable() {
-    textsize(32)
+    textSize(32)
     fill(0)
     text("livello " + livello, 50, 50)
 }
